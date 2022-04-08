@@ -1,5 +1,8 @@
 import "./App.css";
 import Guarantee from "../src/components/Guarantee";
+import delivery from "./assets/f-delivery.png";
+import coin from "./assets/coin.png";
+import chat from "./assets/chat.png";
 
 function App() {
 	const descriptions = [
@@ -9,21 +12,9 @@ function App() {
 	];
 	return (
 		<div className="App">
-			<Guarantee
-				source="../assets/f-delivery.png"
-				service="Free Shipping"
-				description={descriptions[0]}
-			/>
-			<Guarantee
-				source="../src/assets/f-delivery.png"
-				service="100 % Money back"
-				description={descriptions[1]}
-			/>
-			<Guarantee
-				source="../assets/exercise2.png"
-				service="Online support 24/7"
-				description={descriptions[2]}
-			/>
+			<Guarantee source={delivery} service="Free Shipping" description={descriptions[0]} />
+			<Guarantee source={coin} service="100 % Money back" description={descriptions[1]} />
+			<Guarantee source={chat} service="Online support 24/7" description={descriptions[2]} />
 		</div>
 	);
 }
