@@ -1,0 +1,10 @@
+.App {
+    display: flex;
+    flex-direction: row;
+    margin: 3rem;
+    gap: 1rem;
+}
+
+.card-container {
+    text-align: center;
+}
