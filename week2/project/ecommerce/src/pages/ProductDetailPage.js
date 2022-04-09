@@ -4,14 +4,12 @@ import styled from "styled-components";
 
 function ProductDetail() {
 	const { id } = useParams();
-	console.log(id);
 	const URL = `https://fakestoreapi.com/products/${id}`;
 	const [product, setProduct] = useState({});
 	const getDetails = async () => {
 		try {
 			let response = await fetch(URL);
 			let detail = await response.json();
-			console.log(detail);
 			setProduct(detail);
 		} catch (err) {
 			console.log(err);
@@ -19,14 +17,14 @@ function ProductDetail() {
 	};
 	useEffect(() => {
 		getDetails();
-	}, []);
+	});
 	return (
 		<StyledContainer>
+			<h1>{product.title}</h1>
 			<div>
-				<h1>{product.title}</h1>
 				<p>{product.description}</p>
+				<img src={product.image} alt={product.title} />
 			</div>
-			<img src={product.image} alt={product.title} />
 		</StyledContainer>
 	);
 }
@@ -35,15 +33,17 @@ export default ProductDetail;
 
 export const StyledContainer = styled.div`
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	margin: 3rem;
 	div {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
 	}
 	img {
-		width: 30%;
+		width: 40%;
 		object-fit: contain;
 	}
 `;

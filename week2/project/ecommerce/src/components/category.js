@@ -8,7 +8,6 @@ function Category() {
 		try {
 			let response = await fetch(baseUrl);
 			let categories = await response.json();
-			console.log(categories);
 			setCategories(categories);
 		} catch (err) {
 			console.log(err);
@@ -16,7 +15,7 @@ function Category() {
 	};
 	useEffect(() => {
 		getCategories();
-	});
+	}, []);
 	return (
 		<StyledContainer>
 			{categories.map((category, index) => {
@@ -42,6 +41,6 @@ export const StyledContainer = styled.div`
 		background-color: #e4e2e2;
 	}
 	h3:hover {
-		background-color: grey;
+		background-color: #b2b2b2;
 	}
 `;

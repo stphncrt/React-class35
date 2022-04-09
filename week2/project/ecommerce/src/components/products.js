@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProductCard from "./productCard";
+// import Loader from "react-loader-spinner";
 
 function Products() {
 	const URL = "https://fakestoreapi.com/products";
