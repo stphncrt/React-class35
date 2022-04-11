@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import products from "../fake-data/all-products";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 
-function Products() {
+function Products({ filteredProducts }) {
+	console.log(filteredProducts);
 	return (
 		<StyledContainer>
-			{products.map((product, index) => {
+			{filteredProducts.map((product, index) => {
 				return <ProductCard key={index} image={product.image} title={product.title} />;
 			})}
 		</StyledContainer>
