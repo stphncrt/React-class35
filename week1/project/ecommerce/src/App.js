@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 function App() {
 	const [filteredProducts, setFilteredProducts] = useState(products);
-	console.log(filteredProducts.length);
 	const [selectedCategory, setSelectedCategory] = useState("");
 
 	useEffect(() => {
