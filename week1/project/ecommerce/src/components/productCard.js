@@ -32,4 +32,9 @@ export const StyledContainer = styled.div`
 		-webkit-line-clamp: 1;
 		-webkit-box-orient: vertical;
 	}
+	@media screen and (max-width: 600px) {
+		img {
+			height: 100%;
+		}
+	}
 `;

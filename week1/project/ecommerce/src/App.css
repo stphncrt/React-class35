@@ -2,7 +2,8 @@
     margin: 2rem;
 }
 
-#header {
+#header,
+#heading {
     text-align: center;
 }
 
@@ -23,9 +24,26 @@
 }
 
 .category h3:hover {
-    background-color: #808080;
+    background-color: #089bf6;
 }
 
 .category-active {
-    background-color: #808080;
+    background-color: #089bf6;
+}
+
+@media screen and (max-width: 600px) {
+    .category {
+        justify-content: flex-start;
+        margin: 0;
+        gap: 1rem;
+        flex-wrap: nowrap;
+    }
+    .category h3 {
+        font-size: 14px;
+        padding: 0.1rem;
+    }
+    #header,
+    #heading {
+        font-size: 16px;
+    }
 }

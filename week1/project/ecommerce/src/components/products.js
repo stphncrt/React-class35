@@ -18,4 +18,7 @@ export default Products;
 export const StyledContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	@media screen and (max-width: 600px) {
+		gap: 2.5rem;
+	}
 `;

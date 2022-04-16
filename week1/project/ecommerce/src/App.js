@@ -2,7 +2,7 @@ import "./App.css";
 import Category from "./components/Category";
 import Products from "./components/Products";
 import products from "./fake-data/all-products";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
 	const [filteredProducts, setFilteredProducts] = useState(products);
@@ -17,7 +17,7 @@ function App() {
 	return (
 		<div className="App">
 			<h1 id="header">Welcome to HYF store...</h1>
-			<h1>Products</h1>
+			<h1 id="heading">Products</h1>
 			<Category
 				selectCategory={(category) => setSelectedCategory(category)}
 				selectedCategory={selectedCategory}
