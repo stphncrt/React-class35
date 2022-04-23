@@ -7,7 +7,7 @@ function Category({ selectCategory, selectedCategory }) {
 		<div className="category">
 			{categories.map((category, index) => (
 				<h3
-					className={selectedCategory === category && "category-active"}
+					className={selectedCategory === category ? "category-active" : "passive"}
 					key={index}
 					onClick={(e) => {
 						selectCategory(e.currentTarget.innerText);

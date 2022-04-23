@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ProductCard from "./ProductCard";
 
 function Products({ filteredProducts }) {
-	console.log(filteredProducts);
 	return (
 		<StyledContainer>
 			{filteredProducts.map((product, index) => {
