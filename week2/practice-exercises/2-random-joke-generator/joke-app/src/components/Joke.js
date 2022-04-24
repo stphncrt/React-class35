@@ -1,7 +1,12 @@
 import React from "react";
 
-function Joke() {
-	return <div>Joke</div>;
+function Joke({ setup, punchline }) {
+	return (
+		<div>
+			<p>{setup}</p>
+			<p>{punchline}</p>
+		</div>
+	);
 }
 
 export default Joke;

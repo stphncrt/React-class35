@@ -8,7 +8,6 @@ function DogGallery() {
 	const [dogPhotos, setDogPhotos] = useState([]);
 	const getDogPhoto = async () => {
 		const dogPhotoData = await axios.get(URL);
-
 		setDogPhotos([...dogPhotos, dogPhotoData.data.message]);
 		console.log(dogPhotos);
 	};
