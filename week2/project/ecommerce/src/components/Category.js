@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-function Category() {
+function Category({ selectCategory }) {
 	const baseUrl = "https://fakestoreapi.com/products/categories";
 	const [categories, setCategories] = useState([]);
 	const getCategories = async () => {
@@ -16,10 +16,19 @@ function Category() {
 	useEffect(() => {
 		getCategories();
 	}, []);
+
 	return (
 		<StyledContainer>
 			{categories.map((category, index) => {
-				return <h3 key={index}>{category}</h3>;
+				return (
+					<h3
+						key={index}
+						onClick={(e) => {
+							selectCategory(e.currentTarget.innerText);
+						}}>
+						{category}
+					</h3>
+				);
 			})}
 		</StyledContainer>
 	);

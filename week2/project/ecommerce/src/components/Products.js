@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import ProductCard from "./productCard";
-// import Loader from "react-loader-spinner";
+import ProductCard from "./ProductCard";
 
-function Products() {
-	const URL = "https://fakestoreapi.com/products";
+function Products({ selectedCategory }) {
+	const URL = selectedCategory
+		? `https://fakestoreapi.com/products/category/${selectedCategory}`
+		: "https://fakestoreapi.com/products/";
 	const [products, setProducts] = useState([]);
 	const getProducts = async () => {
 		try {
@@ -17,7 +18,7 @@ function Products() {
 	};
 	useEffect(() => {
 		getProducts();
-	}, []);
+	}, [URL]);
 	return (
 		<StyledContainer>
 			{products.map((product, index) => {
