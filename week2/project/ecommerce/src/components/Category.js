@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { StyledButton } from "./CategoryButton";
 
-function Category({ selectCategory }) {
+function Category({ selectCategory, selectedCategory }) {
 	const baseUrl = "https://fakestoreapi.com/products/categories";
+
 	const [categories, setCategories] = useState([]);
+	const [isActive, setIsActive] = useState();
 	const getCategories = async () => {
 		try {
 			let response = await fetch(baseUrl);
@@ -21,13 +24,13 @@ function Category({ selectCategory }) {
 		<StyledContainer>
 			{categories.map((category, index) => {
 				return (
-					<h3
+					<StyledButton
 						key={index}
 						onClick={(e) => {
 							selectCategory(e.currentTarget.innerText);
 						}}>
 						{category}
-					</h3>
+					</StyledButton>
 				);
 			})}
 		</StyledContainer>
@@ -47,7 +50,7 @@ export const StyledContainer = styled.div`
 	h3 {
 		padding: 0.5rem;
 		color: #0e0c0c;
-		background-color: #e4e2e2;
+		background-color: ${(props) => (props.isActive ? "red" : "blue")};
 	}
 	h3:hover {
 		background-color: #b2b2b2;

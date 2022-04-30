@@ -8,7 +8,7 @@ function MainPage() {
 	return (
 		<div className="App">
 			<h1 id="header">Welcome to HYF store...</h1>
-			<h1>Products</h1>
+			<h2 style={{ textAlign: "center" }}>Products</h2>
 			<Category selectCategory={setSelectedCategory} />
 			<Products selectedCategory={selectedCategory} />
 		</div>

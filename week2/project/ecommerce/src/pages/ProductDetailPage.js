@@ -12,12 +12,12 @@ function ProductDetail() {
 			let detail = await response.json();
 			setProduct(detail);
 		} catch (err) {
-			console.log(err);
+			throw new Error(err);
 		}
 	};
 	useEffect(() => {
 		getDetails();
-	});
+	}, []);
 	return (
 		<StyledContainer>
 			<h1>{product.title}</h1>
