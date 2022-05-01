@@ -44,6 +44,10 @@ export default Products;
 export const StyledContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	@media screen and (max-width: 600px) {
+		margin: 1rem;
+		gap: 2rem;
+	}
 `;
 export const override = css`
 	display: block;

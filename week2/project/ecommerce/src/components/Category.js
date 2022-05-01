@@ -39,13 +39,17 @@ function Category({ selectCategory, selectedCategory }) {
 
 export default Category;
 
-export const StyledContainer = styled.ul`
+export const StyledContainer = styled.div`
 	width: 80%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	gap: 1rem;
-	margin: 1rem 3rem;
+	margin: 1rem 5rem;
 	justify-content: center;
-	list-style-type: none;
+
+	@media screen and (max-width: 600px) {
+		flex-wrap: nowrap;
+		width: 50%;
+	}
 `;
