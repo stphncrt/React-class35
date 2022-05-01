@@ -6,7 +6,6 @@ function Category({ selectCategory, selectedCategory }) {
 	const baseUrl = "https://fakestoreapi.com/products/categories";
 
 	const [categories, setCategories] = useState([]);
-	const [isActive, setIsActive] = useState();
 	const getCategories = async () => {
 		try {
 			let response = await fetch(baseUrl);
@@ -26,9 +25,10 @@ function Category({ selectCategory, selectedCategory }) {
 				return (
 					<StyledButton
 						key={index}
-						onClick={(e) => {
-							selectCategory(e.currentTarget.innerText);
-						}}>
+						onClick={() => {
+							selectCategory(category);
+						}}
+						isActive={category === selectedCategory}>
 						{category}
 					</StyledButton>
 				);
@@ -39,7 +39,7 @@ function Category({ selectCategory, selectedCategory }) {
 
 export default Category;
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.ul`
 	width: 80%;
 	display: flex;
 	flex-direction: row;
@@ -47,12 +47,5 @@ export const StyledContainer = styled.div`
 	gap: 1rem;
 	margin: 1rem 3rem;
 	justify-content: center;
-	h3 {
-		padding: 0.5rem;
-		color: #0e0c0c;
-		background-color: ${(props) => (props.isActive ? "red" : "blue")};
-	}
-	h3:hover {
-		background-color: #b2b2b2;
-	}
+	list-style-type: none;
 `;

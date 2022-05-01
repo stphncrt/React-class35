@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.li`
 	padding: 0.5rem;
-	color: #0e0c0c;
-	background-color: ${(props) => (props.isActive ? "red" : "blue")};
-	:hover{
-		background-color: grey;
+	color: #fff;
+	background-color: ${(props) => (props.isActive ? "#3c45bb" : "#64b1c0")};
+	text-decoration: none;
+	:hover {
+		background-color: ${(props) => (props.isActive ? null : "#243661")};
+	}
 `;
