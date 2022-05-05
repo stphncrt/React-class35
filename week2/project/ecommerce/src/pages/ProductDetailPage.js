@@ -6,13 +6,15 @@ function ProductDetail() {
 	const { id } = useParams();
 	const URL = `https://fakestoreapi.com/products/${id}`;
 	const [product, setProduct] = useState({});
+	const [errMessage, setErrMessage] = useState("");
+
 	const getDetails = async () => {
 		try {
 			let response = await fetch(URL);
 			let detail = await response.json();
 			setProduct(detail);
 		} catch (err) {
-			throw new Error(err);
+			setErrMessage(err.message);
 		}
 	};
 	useEffect(() => {
@@ -20,11 +22,17 @@ function ProductDetail() {
 	}, []);
 	return (
 		<StyledContainer>
-			<h1>{product.title}</h1>
-			<div>
-				<p>{product.description}</p>
-				<img src={product.image} alt={product.title} />
-			</div>
+			{errMessage ? (
+				<h3>{errMessage}</h3>
+			) : (
+				<>
+					<h1>{product.title}</h1>
+					<div>
+						<p>{product.description}</p>
+						<img src={product.image} alt={product.title} />
+					</div>
+				</>
+			)}
 		</StyledContainer>
 	);
 }

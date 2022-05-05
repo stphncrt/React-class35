@@ -10,6 +10,8 @@ function Products({ selectedCategory }) {
 		: "https://fakestoreapi.com/products/";
 	const [products, setProducts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [errMessage, setErrMessage] = useState("");
+
 	const getProducts = async () => {
 		try {
 			setIsLoading(true);
@@ -18,7 +20,7 @@ function Products({ selectedCategory }) {
 			setProducts(products);
 			setIsLoading(false);
 		} catch (err) {
-			throw new Error(err);
+			setErrMessage(err.message);
 		}
 	};
 	useEffect(() => {
@@ -28,6 +30,8 @@ function Products({ selectedCategory }) {
 		<StyledContainer>
 			{isLoading ? (
 				<ClipLoader css={override} size={100} />
+			) : errMessage ? (
+				<h3>{errMessage}</h3>
 			) : (
 				products.map((product, index) => {
 					return (
