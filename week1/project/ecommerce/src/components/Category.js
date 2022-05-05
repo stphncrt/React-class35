@@ -1,21 +1,39 @@
 import React from "react";
 import categories from "../fake-data/all-categories";
-import "../App.css";
+import styled from "styled-components";
+import { StyledButton } from "./CategoryButton";
 
-function Category({ selectCategory, selectedCategory }) {
+function Category({ onCategorySelect, selectedCategory }) {
 	return (
-		<div className="category">
+		<StyledContainer>
 			{categories.map((category, index) => (
-				<h3
-					className={selectedCategory === category ? "category-active" : "passive"}
+				<StyledButton
 					key={index}
-					onClick={(e) => {
-						selectCategory(e.currentTarget.innerText);
-					}}>
+					onClick={() => {
+						if (selectedCategory === category) {
+							onCategorySelect("");
+						} else {
+							onCategorySelect(category);
+						}
+					}}
+					isActive={category === selectedCategory}>
 					{category}
-				</h3>
+				</StyledButton>
 			))}
-		</div>
+		</StyledContainer>
 	);
 }
 export default Category;
+export const StyledContainer = styled.div`
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin: 1rem 5rem;
+	justify-content: center;
+	@media screen and (max-width: 600px) {
+		flex-wrap: nowrap;
+		width: 50%;
+	}
+`;

@@ -1,31 +1,40 @@
-import "./App.css";
+import styled from "styled-components";
 import Category from "./components/Category";
 import Products from "./components/Products";
-import products from "./fake-data/all-products";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function App() {
-	const [filteredProducts, setFilteredProducts] = useState(products);
 	const [selectedCategory, setSelectedCategory] = useState("");
 
-	useEffect(() => {
-		const filtered = products.filter((product) => selectedCategory.slice(6) === product.category);
-		setFilteredProducts(filtered);
-	}, [selectedCategory]);
-
 	return (
-		<div className="App">
-			<h1 id="header">Welcome to HYF store...</h1>
-			<h2 id="heading">Products</h2>
+		<StyledContainer>
+			<h1>Welcome to HYF store...</h1>
+			<h2>Products</h2>
 			<Category
-				selectCategory={(category) => {
+				onCategorySelect={(category) => {
 					setSelectedCategory(category);
 				}}
 				selectedCategory={selectedCategory}
 			/>
-			<Products filteredProducts={filteredProducts.length === 0 ? products : filteredProducts} />
-		</div>
+			<Products selectedCategory={selectedCategory} />
+		</StyledContainer>
 	);
 }
 
 export default App;
+const StyledContainer = styled.div`
+	margin: 2rem;
+	h2,
+	h1 {
+		text-align: center;
+	}
+	@media screen and (max-width: 600px) {
+		margin-left: 0.5rem;
+		h1 {
+			font-size: 20px;
+		}
+		h2 {
+			font-size: 16px;
+		}
+	}
+`;

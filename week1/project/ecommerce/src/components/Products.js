@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import ProductCard from "./ProductCard";
+import productsData from "../fake-data/all-products";
 
-function Products({ filteredProducts }) {
+function Products({ selectedCategory }) {
+	let products;
+	if (selectedCategory === "") {
+		products = productsData;
+	} else {
+		products = productsData.filter((product) => product.category === selectedCategory.slice(6));
+	}
+
 	return (
 		<StyledContainer>
-			{filteredProducts.map((product, index) => {
+			{products.map((product, index) => {
 				return <ProductCard key={index} image={product.image} title={product.title} />;
 			})}
 		</StyledContainer>
