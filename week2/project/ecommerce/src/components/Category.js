@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { StyledButton } from "./CategoryButton";
 
-function Category({ selectCategory, selectedCategory }) {
+function Category({ onCategorySelect, selectedCategory }) {
 	const baseUrl = "https://fakestoreapi.com/products/categories";
 
 	const [categories, setCategories] = useState([]);
@@ -26,7 +26,11 @@ function Category({ selectCategory, selectedCategory }) {
 					<StyledButton
 						key={index}
 						onClick={() => {
-							selectCategory(category);
+							if (selectedCategory === category) {
+								onCategorySelect("");
+							} else {
+								onCategorySelect(category);
+							}
 						}}
 						isActive={category === selectedCategory}>
 						{category}

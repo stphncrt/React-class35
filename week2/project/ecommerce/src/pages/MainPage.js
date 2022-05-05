@@ -10,7 +10,7 @@ function MainPage() {
 		<StyledContainer>
 			<h1>Welcome to HYF store...</h1>
 			<h2>Products</h2>
-			<Category selectCategory={setSelectedCategory} selectedCategory={selectedCategory} />
+			<Category onCategorySelect={setSelectedCategory} selectedCategory={selectedCategory} />
 			<Products selectedCategory={selectedCategory} />
 		</StyledContainer>
 	);
