@@ -1,12 +1,12 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import { FavouritesProvider } from "./context/FavouritesContext";
+import { FavoritesProvider } from "./context/FavoritesContext";
 import FavoritePage from "./pages/FavoritePage";
 import MainPage from "./pages/MainPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 
 function router() {
 	return (
-		<FavouritesProvider>
+		<FavoritesProvider>
 			<Router>
 				<Routes>
 					<Route path="/" element={<MainPage />} />
@@ -14,7 +14,7 @@ function router() {
 					<Route path="/favorites" element={<FavoritePage />} />
 				</Routes>
 			</Router>
-		</FavouritesProvider>
+		</FavoritesProvider>
 	);
 }
 

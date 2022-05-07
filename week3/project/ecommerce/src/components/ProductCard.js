@@ -3,14 +3,13 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as HeartRegular } from "../assets/heart-regular.svg";
 import { ReactComponent as HeartSolid } from "../assets/heart-solid.svg";
-import FavouritesContext from "../context/FavouritesContext";
+import FavoritesContext from "../context/FavoritesContext";
 
 function ProductCard({ image, title, id }) {
-	const { favouritedProductIds, addToFavourites, removeFromFavourites } =
-		useContext(FavouritesContext);
-	const favouritedProduct = favouritedProductIds.find((favId) => favId === id);
+	const { favoritedProductIds, addToFavorites, removeFromFavorites } = useContext(FavoritesContext);
+	const favoritedProduct = favoritedProductIds.find((favId) => favId === id);
 	const navigate = useNavigate();
-	console.log(favouritedProductIds);
+	console.log(favoritedProductIds);
 	return (
 		<StyledContainer
 			onClick={() => {
@@ -18,22 +17,22 @@ function ProductCard({ image, title, id }) {
 			}}>
 			<div className="wrapper">
 				<img src={image} alt={title} />
-				{favouritedProduct ? (
+				{favoritedProduct ? (
 					<HeartSolid
 						className="heart"
 						onClick={(e) => {
 							e.preventDefault();
 							e.stopPropagation();
-							removeFromFavourites(id);
+							removeFromFavorites(id);
 						}}
 					/>
 				) : (
 					<HeartRegular
 						className="heart"
 						onClick={(e) => {
-							e.preventDefault();
 							e.stopPropagation();
-							addToFavourites(id);
+							e.preventDefault();
+							addToFavorites(id);
 						}}
 					/>
 				)}

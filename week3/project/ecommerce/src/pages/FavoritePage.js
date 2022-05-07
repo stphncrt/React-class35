@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import FavouritesContext from "../context/FavouritesContext";
+import React, { useContext, useState } from "react";
+import FavoritesContext from "../context/FavoritesContext";
 
 function FavoritePage() {
-	const { favouritedProductIds, addToFavourites, removeFromFavourites } =
-		useContext(FavouritesContext);
-	console.log(favouritedProductIds);
+	const { favoritedProductIds, addToFavorites, removeFromFavorites } = useContext(FavoritesContext);
+	const [favId, setFavId] = useState(favoritedProductIds);
+
 	return (
 		<div>
 			<h2>Favorites</h2>
-			{favouritedProductIds.map((id) => (
+			{favId.map((id) => (
 				<h3>{id}</h3>
 			))}
 		</div>
