@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as HeartRegular } from "../assets/heart-regular.svg";
 import { ReactComponent as HeartSolid } from "../assets/heart-solid.svg";
-import FavoritesContext from "../context/FavoritesContext";
+import { FavoritesContext } from "../context/FavoritesContext";
 
 function ProductCard({ image, title, id }) {
 	const { favoritedProductIds, addToFavorites, removeFromFavorites } = useContext(FavoritesContext);
 	const favoritedProduct = favoritedProductIds.find((favId) => favId === id);
 	const navigate = useNavigate();
-	console.log(favoritedProductIds);
 	return (
 		<StyledContainer
 			onClick={() => {
@@ -21,7 +20,6 @@ function ProductCard({ image, title, id }) {
 					<HeartSolid
 						className="heart"
 						onClick={(e) => {
-							e.preventDefault();
 							e.stopPropagation();
 							removeFromFavorites(id);
 						}}
@@ -31,7 +29,6 @@ function ProductCard({ image, title, id }) {
 						className="heart"
 						onClick={(e) => {
 							e.stopPropagation();
-							e.preventDefault();
 							addToFavorites(id);
 						}}
 					/>
@@ -65,7 +62,7 @@ export const StyledContainer = styled.div`
 	img {
 		object-fit: contain;
 		width: 90%;
-		height: 20rem;
+		height: 13rem;
 	}
 	p {
 		overflow: hidden;
