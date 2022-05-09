@@ -3,16 +3,17 @@ import { FavoritesContext } from "../context/FavoritesContext";
 import ProductCard from "../components/ProductCard";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
+import styled from "styled-components";
 
 function FavoritePage() {
 	const [products, setProducts] = useState([]);
-	const [isError, setIsError] = useState(false);
+	const [errMessage, setErrMessage] = useState("");
 	const [isLoading, setIsLoading] = useState(true);
 	const { favoritedProductIds } = useContext(FavoritesContext);
 	console.log(favoritedProductIds);
 
 	useEffect(() => {
-		async function loadData() {
+		async function fetchData() {
 			try {
 				const data = await Promise.all(
 					favoritedProductIds.map(async (id) => {
@@ -22,44 +23,43 @@ function FavoritePage() {
 					}),
 				);
 				setProducts(data);
-			} catch (error) {
-				console.log(error);
-				setIsError(true);
+			} catch (err) {
+				setErrMessage(err.message);
+				setIsLoading(false);
 			}
 			setIsLoading(false);
 		}
 
-		loadData();
+		fetchData();
 	}, [favoritedProductIds]);
 
 	return (
-		<div>
-			<h2>Favorites</h2>
-			<div className="main">
-				<ul className="products">
-					{isError ? (
-						<span>BAD REQUEST!</span>
-					) : isLoading ? (
-						<ClipLoader css={override} size={100} />
-					) : products.length ? (
-						products.map((product, index) => (
-							<ProductCard
-								key={index}
-								id={product.id}
-								title={product.title}
-								image={product.image}
-							/>
-						))
-					) : (
-						<div>No favorites!</div>
-					)}
-				</ul>
-			</div>
-		</div>
+		<StyledContainer>
+			{isLoading ? (
+				<ClipLoader css={override} size={100} />
+			) : errMessage ? (
+				<h3>{errMessage}</h3>
+			) : (
+				products.map((product, index) => {
+					return (
+						<ProductCard key={index} image={product.image} title={product.title} id={product.id} />
+					);
+				})
+			)}
+		</StyledContainer>
 	);
 }
 
 export default FavoritePage;
+
+export const StyledContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	@media screen and (max-width: 600px) {
+		margin: 1rem;
+		gap: 2rem;
+	}
+`;
 export const override = css`
 	display: block;
 	margin: 0 auto;

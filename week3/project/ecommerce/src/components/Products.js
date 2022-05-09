@@ -21,6 +21,7 @@ function Products({ selectedCategory }) {
 			setIsLoading(false);
 		} catch (err) {
 			setErrMessage(err.message);
+			setIsLoading(false);
 		}
 	};
 	useEffect(() => {
