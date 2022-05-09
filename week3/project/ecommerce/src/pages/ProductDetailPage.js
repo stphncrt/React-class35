@@ -6,30 +6,15 @@ import { css } from "@emotion/react";
 import { FavoritesContext } from "../context/FavoritesContext";
 import { ReactComponent as HeartRegular } from "../assets/heart-regular.svg";
 import { ReactComponent as HeartSolid } from "../assets/heart-solid.svg";
+import useFetch from "../hooks/UseFetch";
 
 function ProductDetail() {
 	const { favoritedProductIds, addToFavorites, removeFromFavorites } = useContext(FavoritesContext);
-	const [isLoading, setIsLoading] = useState(true);
 	const { id } = useParams();
-	const URL = `https://fakestoreapi.com/products/${id}`;
-	const [product, setProduct] = useState({});
-	const [errMessage, setErrMessage] = useState("");
+	const url = `https://fakestoreapi.com/products/${id}`;
 	const favoritedProduct = favoritedProductIds.find((favId) => favId === id);
+	const { data: product, isLoading, errMessage } = useFetch(url);
 
-	const getDetails = async () => {
-		try {
-			let response = await fetch(URL);
-			let detail = await response.json();
-			setProduct(detail);
-		} catch (err) {
-			setIsLoading(false);
-			setErrMessage(err.message);
-		}
-		setIsLoading(false);
-	};
-	useEffect(() => {
-		getDetails();
-	}, []);
 	return (
 		<StyledContainer>
 			{errMessage ? (
@@ -71,7 +56,7 @@ export default ProductDetail;
 export const StyledContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 70%;
+	width: 80%;
 	margin: 3rem;
 	padding: 1rem;
 

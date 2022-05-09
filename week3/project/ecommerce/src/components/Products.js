@@ -1,32 +1,15 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProductCard from "./ProductCard";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
+import useFetch from "../hooks/UseFetch";
 
 function Products({ selectedCategory }) {
-	const URL = selectedCategory
+	const url = selectedCategory
 		? `https://fakestoreapi.com/products/category/${selectedCategory}`
 		: "https://fakestoreapi.com/products/";
-	const [products, setProducts] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
-	const [errMessage, setErrMessage] = useState("");
+	const { data: products, isLoading, errMessage } = useFetch(url);
 
-	const getProducts = async () => {
-		try {
-			setIsLoading(true);
-			let response = await fetch(URL);
-			let products = await response.json();
-			setProducts(products);
-			setIsLoading(false);
-		} catch (err) {
-			setErrMessage(err.message);
-			setIsLoading(false);
-		}
-	};
-	useEffect(() => {
-		getProducts();
-	}, [URL]);
 	return (
 		<StyledContainer>
 			{isLoading ? (

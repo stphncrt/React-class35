@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { StyledButton } from "./CategoryButton";
+import useFetch from "../hooks/UseFetch";
 
 function Category({ onCategorySelect, selectedCategory }) {
 	const baseUrl = "https://fakestoreapi.com/products/categories";
-
-	const [categories, setCategories] = useState([]);
-	const getCategories = async () => {
-		try {
-			let response = await fetch(baseUrl);
-			let categories = await response.json();
-			setCategories(categories);
-		} catch (err) {
-			console.log(err);
-		}
-	};
-	useEffect(() => {
-		getCategories();
-	}, []);
-
+	const { data: categories, isLoading, errMessage } = useFetch(baseUrl);
 	return (
 		<StyledContainer>
 			{categories.map((category, index) => {
-				return (
+				return errMessage ? (
+					<h3>{errMessage}</h3>
+				) : isLoading ? (
+					<h2>loading</h2>
+				) : (
 					<StyledButton
 						key={index}
 						onClick={() => {
