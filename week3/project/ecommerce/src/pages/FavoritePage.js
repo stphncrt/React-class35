@@ -10,7 +10,6 @@ function FavoritePage() {
 	const [errMessage, setErrMessage] = useState("");
 	const [isLoading, setIsLoading] = useState(true);
 	const { favoritedProductIds } = useContext(FavoritesContext);
-	console.log(favoritedProductIds);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -35,17 +34,16 @@ function FavoritePage() {
 
 	return (
 		<StyledContainer>
-			{isLoading ? (
-				<ClipLoader css={override} size={100} />
-			) : errMessage ? (
-				<h3>{errMessage}</h3>
-			) : (
-				products.map((product, index) => {
+			{isLoading && <ClipLoader css={override} size={100} />}
+			{errMessage && <h3>{errMessage}</h3>}
+			{products.length === 0 && <h3>No favorited product found..</h3>}
+			{!errMessage &&
+				!isLoading &&
+				products?.map((product, index) => {
 					return (
 						<ProductCard key={index} image={product.image} title={product.title} id={product.id} />
 					);
-				})
-			)}
+				})}
 		</StyledContainer>
 	);
 }

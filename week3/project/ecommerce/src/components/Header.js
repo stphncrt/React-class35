@@ -1,20 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header() {
-	const navigate = useNavigate();
 	return (
 		<StyledContainer>
 			<h1>Welcome to HYF store...</h1>
 			<div>
 				<h2>Products</h2>
-				<a id="first" href="">
+				<Link id="first" to={"/"}>
 					Products
-				</a>
-				<a href="" onClick={() => navigate("/favorites")}>
-					Favorites
-				</a>
+				</Link>
+				<Link to={"/favorites"}>Favorites</Link>
 			</div>
 		</StyledContainer>
 	);
